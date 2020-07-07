@@ -2,7 +2,7 @@
 // @name           Neptun Tinker (NPU Compatibility ver.)
 // @namespace      http://example.org
 // @description    Neptun, viszont a mi verziónk!
-// @version        0.2.0
+// @version        0.2.2
 // @downloadURL    https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @updateURL      https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @include        https://*neptun*/*hallgato*/*
@@ -30,7 +30,8 @@
 
   var nep = {
     init: async function () {
-      
+
+      setTimeout(this.courseCollison, 2500);
       var i;
       var max_num = document.getElementById(
         "c_messages_gridMessages_ddlPageSize"
@@ -153,6 +154,38 @@
         }
       }
     },
+
+    courseCollison: function () {
+      let table = document.getElementById("tgTable");
+      let week = table.rows[0];
+      console.log(week.cells);
+      for (let k = 1; k <= 7; k++) {
+        let tops = [];
+        const day_column = week.cells[k].childNodes[0];
+        if (day_column.childNodes.length != 0) {
+          for (let index = 0; index < day_column.childNodes.length; index++) {
+            if (tops.includes(day_column.childNodes[index].style.top)) {
+              day_column.childNodes[index].style.backgroundColor = "red";
+              day_column.childNodes[index].childNodes[2].style.backgroundColor =
+                "red";
+              for (let l = 0; l <= index; l++) {
+                if (
+                  day_column.childNodes[index].style.top ==
+                  day_column.childNodes[l].style.top
+                ) {
+                  day_column.childNodes[l].style.backgroundColor = "red";
+                  day_column.childNodes[l].childNodes[2].style.backgroundColor =
+                    "red";
+                }
+              }
+            }
+            tops.push(day_column.childNodes[index].style.top);
+          }
+        }
+        console.log(tops)
+      }
+    },
+
   };
   nep.init();
 })();
