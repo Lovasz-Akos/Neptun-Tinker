@@ -98,6 +98,7 @@
             console.log(document.getElementById(id).children[6].children[0]);
           }
         }
+        
         //ÖSZTÖNDÍJ
 
         // console.log(document.getElementById(id).children[6].children[0]);
@@ -115,6 +116,20 @@
             console.log(document.getElementById(id).children[6].children[0]);
             // document.getElementById(id).children[6].children[0].classList.remove("link");
           }
+        }
+        else if (element.innerHTML.toUpperCase().includes("ÜGYINTÉZŐ")) {
+          const id = element.parentElement.parentElement.id;
+          document.getElementById(id).classList.remove("Row1_Bold");
+          document.getElementById(id).children[6].children[0].style.setProperty("color","white","important");
+          if (
+            document.getElementById(id).children[5].children[0].alt ==
+            "Elolvasott üzenet"
+          ) {
+            document.getElementById(id).style.backgroundColor = "#D82020";
+          } else {
+            document.getElementById(id).style.backgroundColor = "#FF0000";
+          }
+                document.getElementById(id).style.color = "white";
         }
       }
       var table = document.getElementById("c_messages_gridMessages_bodytable");
