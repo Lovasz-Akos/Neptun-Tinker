@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name           Neptun Tinker (NPU Compatibility ver.)
 // @namespace      http://example.org
-// @description    Neptun, viszont a mi verziónk!
-// @version        0.2.3
+// @description    NPU++
+// @version        0.2.4
 // @downloadURL    https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @updateURL      https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @include        https://*neptun*/*hallgato*/*
@@ -32,6 +32,8 @@
     init: async function () {
 
       setTimeout(this.courseCollison, 2500);
+      
+      setTimeout(this, 2500)
       var i;
       var max_num = document.getElementById(
         "c_messages_gridMessages_ddlPageSize"
