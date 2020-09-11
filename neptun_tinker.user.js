@@ -2,7 +2,7 @@
 // @name           Neptun Tinker (NPU Compatibility ver.)
 // @namespace      http://example.org
 // @description    NPU++
-// @version        0.4.3
+// @version        0.4.7
 // @downloadURL    https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @updateURL      https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @include        https://*neptun*/*hallgato*/*
@@ -27,13 +27,13 @@
 
 (function() {
     "use strict";
-    var timerVar = setInterval(function() { RefreshColoring(); }, 1000);
     var nep = {
         init: async function() {
 
             setTimeout(this.courseCollison, 2500);
-            setInterval(function() { RefreshColoring(); }, 1000);
-            setTimeout(this, 2500);
+            setTimeout(this.RefreshColoring, 500);
+            setTimeout(this, 1000);
+
             var table = document.getElementById("c_messages_gridMessages_bodytable");
             var cell = table.getElementsByClassName("scrollablebody");
             for (var j = 1, row;
@@ -105,6 +105,7 @@
         },
 
         RefreshColoring: function() {
+            setTimeout(this.RefreshColoring, 500);
             var i;
             var max_num = document.getElementById(
                 "c_messages_gridMessages_ddlPageSize"
