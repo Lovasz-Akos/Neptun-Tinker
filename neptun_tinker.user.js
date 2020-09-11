@@ -2,7 +2,7 @@
 // @name           Neptun Tinker (NPU Compatibility ver.)
 // @namespace      http://example.org
 // @description    NPU++
-// @version        0.2.5
+// @version        0.4.2
 // @downloadURL    https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @updateURL      https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @include        https://*neptun*/*hallgato*/*
@@ -27,13 +27,84 @@
 
 (function() {
     "use strict";
-
+    var timerVar = setInterval(function() { RefreshColoring(); }, 1000);
     var nep = {
         init: async function() {
 
             setTimeout(this.courseCollison, 2500);
 
-            setTimeout(this, 2500)
+            setTimeout(this, 2500);
+            var table = document.getElementById("c_messages_gridMessages_bodytable");
+            var cell = table.getElementsByClassName("scrollablebody");
+            for (var j = 1, row;
+                (row = table.rows[j]); j++) {
+                let date = row.cells[7].textContent;
+                let str = date.split(".");
+                let str2 = str[3].split(":");
+                let newDate = new Date(
+                    str[0],
+                    str[1] - 1,
+                    str[2],
+                    str2[0],
+                    str2[1],
+                    str2[2]
+                );
+                let now = Date.now();
+                let newText;
+                if (Math.floor((now - newDate) / (1000 * 60 * 60)) < 1) {
+                    newText =
+                        Math.floor(Math.floor(now - newDate) / (1000 * 60)) + " perce";
+                } else if (Math.floor((now - newDate) / (1000 * 60 * 60 * 24)) < 1) {
+                    newText =
+                        Math.floor(Math.floor(now - newDate) / (1000 * 60 * 60)) + " órája";
+                } else if (Math.floor((now - newDate) / (1000 * 60 * 60 * 24)) < 365) {
+                    newText =
+                        Math.floor(Math.floor(now - newDate) / (1000 * 60 * 60 * 24)) +
+                        " napja";
+                } else {
+                    newText =
+                        Math.floor(
+                            Math.floor(now - newDate) / (1000 * 60 * 60 * 24 * 365)
+                        ) + " éve";
+                }
+                if (newText != null) {
+                    row.cells[7].textContent = newText;
+                }
+            }
+        },
+
+        courseCollison: function() {
+            let table = document.getElementById("tgTable");
+            let week = table.rows[0];
+            console.log(week.cells);
+            for (let k = 1; k <= 7; k++) {
+                let tops = [];
+                const day_column = week.cells[k].childNodes[0];
+                if (day_column.childNodes.length != 0) {
+                    for (let index = 0; index < day_column.childNodes.length; index++) {
+                        if (tops.includes(day_column.childNodes[index].style.top)) {
+                            day_column.childNodes[index].style.backgroundColor = "red";
+                            day_column.childNodes[index].childNodes[2].style.backgroundColor =
+                                "red";
+                            for (let l = 0; l <= index; l++) {
+                                if (
+                                    day_column.childNodes[index].style.top ==
+                                    day_column.childNodes[l].style.top
+                                ) {
+                                    day_column.childNodes[l].style.backgroundColor = "red";
+                                    day_column.childNodes[l].childNodes[2].style.backgroundColor =
+                                        "red";
+                                }
+                            }
+                        }
+                        tops.push(day_column.childNodes[index].style.top);
+                    }
+                }
+                console.log(tops)
+            }
+        },
+
+        RefreshColoring: function() {
             var i;
             var max_num = document.getElementById(
                 "c_messages_gridMessages_ddlPageSize"
@@ -130,74 +201,6 @@
                     }
                     document.getElementById(id).style.color = "white";
                 }
-            }
-            var table = document.getElementById("c_messages_gridMessages_bodytable");
-            var cell = table.getElementsByClassName("scrollablebody");
-            for (var j = 1, row;
-                (row = table.rows[j]); j++) {
-                let date = row.cells[7].textContent;
-                let str = date.split(".");
-                let str2 = str[3].split(":");
-                let newDate = new Date(
-                    str[0],
-                    str[1] - 1,
-                    str[2],
-                    str2[0],
-                    str2[1],
-                    str2[2]
-                );
-                let now = Date.now();
-                let newText;
-                if (Math.floor((now - newDate) / (1000 * 60 * 60)) < 1) {
-                    newText =
-                        Math.floor(Math.floor(now - newDate) / (1000 * 60)) + " perce";
-                } else if (Math.floor((now - newDate) / (1000 * 60 * 60 * 24)) < 1) {
-                    newText =
-                        Math.floor(Math.floor(now - newDate) / (1000 * 60 * 60)) + " órája";
-                } else if (Math.floor((now - newDate) / (1000 * 60 * 60 * 24)) < 365) {
-                    newText =
-                        Math.floor(Math.floor(now - newDate) / (1000 * 60 * 60 * 24)) +
-                        " napja";
-                } else {
-                    newText =
-                        Math.floor(
-                            Math.floor(now - newDate) / (1000 * 60 * 60 * 24 * 365)
-                        ) + " éve";
-                }
-                if (newText != null) {
-                    row.cells[7].textContent = newText;
-                }
-            }
-        },
-
-        courseCollison: function() {
-            let table = document.getElementById("tgTable");
-            let week = table.rows[0];
-            console.log(week.cells);
-            for (let k = 1; k <= 7; k++) {
-                let tops = [];
-                const day_column = week.cells[k].childNodes[0];
-                if (day_column.childNodes.length != 0) {
-                    for (let index = 0; index < day_column.childNodes.length; index++) {
-                        if (tops.includes(day_column.childNodes[index].style.top)) {
-                            day_column.childNodes[index].style.backgroundColor = "red";
-                            day_column.childNodes[index].childNodes[2].style.backgroundColor =
-                                "red";
-                            for (let l = 0; l <= index; l++) {
-                                if (
-                                    day_column.childNodes[index].style.top ==
-                                    day_column.childNodes[l].style.top
-                                ) {
-                                    day_column.childNodes[l].style.backgroundColor = "red";
-                                    day_column.childNodes[l].childNodes[2].style.backgroundColor =
-                                        "red";
-                                }
-                            }
-                        }
-                        tops.push(day_column.childNodes[index].style.top);
-                    }
-                }
-                console.log(tops)
             }
         },
 
