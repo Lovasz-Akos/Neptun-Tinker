@@ -88,7 +88,8 @@
                     element.innerHTML == "Kurzus órarendi változás" ||
                     element.innerHTML.toUpperCase().includes("ERASMUS") ||
                     element.innerHTML.toUpperCase().includes("SPORT") ||
-                    element.innerHTML.toUpperCase().includes("ANGOL")
+                    element.innerHTML.toUpperCase().includes("ANGOL") ||
+                    element.innerHTML.toUpperCase().includes("TÖRÖLVE")
                 ) {
                     const id = element.parentElement.parentElement.id;
                     document.getElementById(id).style.display = "none";
