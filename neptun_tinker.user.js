@@ -2,7 +2,7 @@
 // @name           Neptun Tinker (NPU Compatibility ver.)
 // @namespace      http://example.org
 // @description    NPU++
-// @version        1.2.0
+// @version        1.2.5
 // @downloadURL    https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @updateURL      https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @include        https://*neptun*/*hallgato*/*
@@ -98,7 +98,8 @@
                 //JEGYBEÍRÁS
                 else if (
                     element.innerHTML.includes("jegybeírás történt") ||
-                    element.innerHTML.includes("vizsgajegy került beírásra")
+                    element.innerHTML.includes("vizsgajegy került beírásra") ||
+                    element.innerHTML.includes("vizsgaeredménye módosítva")
                 ) {
                     const id = element.parentElement.parentElement.id;
                     document.getElementById(id).classList.remove("Row1_Bold");
