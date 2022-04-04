@@ -89,6 +89,7 @@
                     element.innerHTML.toUpperCase().includes("ERASMUS") ||
                     element.innerHTML.toUpperCase().includes("SPORT") ||
                     element.innerHTML.toUpperCase().includes("ANGOL") ||
+                    element.innerHTML.toUpperCase().includes("MEFOB") ||
                     element.innerHTML.toUpperCase().includes("KURZUS TÖRLÉSE ÓRARENDRŐL")
                 ) {
                     const id = element.parentElement.parentElement.id;
