@@ -2,7 +2,7 @@
 // @name           Neptun Tinker (NPU Compatibility ver.)
 // @namespace      http://example.org
 // @description    NPU++
-// @version        1.2.5
+// @version        1.3.0
 // @downloadURL    https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @updateURL      https://raw.githubusercontent.com/LovaszAkos/Neptun_tinker_npu_compatible/blob/master/neptun_tinker.user.js
 // @include        https://*neptun*/*hallgato*/*
