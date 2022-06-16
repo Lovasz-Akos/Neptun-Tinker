@@ -2,7 +2,7 @@
 // @name           Neptun Tinker (NPU Compatibility ver.)
 // @namespace      http://example.org
 // @description    NPU++
-// @version        1.3.2
+// @version        1.3.5
 // @downloadURL    https://github.com/Lovasz-Akos/Neptun-Tinker/raw/master/neptun_tinker.user.js
 // @updateURL      https://github.com/Lovasz-Akos/Neptun-Tinker/raw/master/neptun_tinker.user.js
 // @include        https://*neptun*/*hallgato*/*
@@ -74,7 +74,7 @@
         },
 
         RefreshColoring: function() {
-            setTimeout(this.RefreshColoring, 50);
+            setTimeout(this.RefreshColoring, 500);
             var i;
             var max_num = document.getElementById(
                 "c_messages_gridMessages_ddlPageSize"
